@@ -2,6 +2,12 @@
 #include <string.h>
 #include <stdlib.h>
 
+typedef struct {
+    char* name;
+    char* specialty;
+    int power;
+} Digimon;
+
 int getPower() {
     return 225;
 }
@@ -14,30 +20,26 @@ char* getName() {
     return "Metalgarurumon";
 }
 
-void printDigimon(char* name, char* specialty, int power) {
-    printf("Printing the digimon...\n");
-    printf("%s\n", name);
-    printf("%s\n", specialty);
-    printf("%d\n", power);
+void printDigimon(Digimon* digimon) {
+    printf("Printing the digimon...\n\n");
+    printf("%s\n", digimon->name);
+    printf("%s\n", digimon->specialty);
+    printf("%d\n", digimon->power);
 }
 
 int createDigimon() {
-    char* name;
-    char* specialty;
-    int power;
+    Digimon* digimon;
 
-    // Get Name
-    name = (char*)malloc(strlen(getName()) + 1);
-    strcpy(name, getName());
+    // Update the digimon
+    digimon = (Digimon*)malloc(sizeof(Digimon));
+    digimon->name = (char*)malloc(strlen(getName) + 1);
+    digimon->specialty = (char*)malloc(strlen(getSpecialty) + 1);
 
-    // Get Specialty
-    specialty = (char*)malloc(strlen(getSpecialty()) + 1);
-    strcpy(specialty, getSpecialty());
+    strcpy(digimon->name, getName()); 
+    strcpy(digimon->specialty, getSpecialty()); 
+    digimon->power = getPower();
 
-    // Get Power
-    power = getPower();
-
-    printDigimon(name, specialty, power);
+    printDigimon(digimon);
     return 1;
 }
 
