@@ -27,25 +27,16 @@ char* readFile(char* filename) {
 
     strcpy(contents, buf);
 
+    fclose(file);
+
     return contents;
 }
 
 
 int main() {
 
-    char* filename;
+    const char* filename = "readme.txt";
     char* contents;
-
-    char buf[128] = "readme.txt";
-
-
-    filename = (char*)malloc(strlen(buf) + 1);
-    if( filename == NULL ) {
-        perror("Error mallocing filename");
-        exit(1);
-    }
-    strcpy(filename, buf);
-
 
     writeFile(filename);
     contents = readFile(filename);
@@ -53,7 +44,6 @@ int main() {
     printf("File contents:\n");
     printf("%s", contents);
 
-    free(filename);
     free(contents);
 
     return 0;
